@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CalculatriceMAUI/CalculatriceMAUI.csproj" Id="ec3d45da-51ea-465c-bba7-a4cc3bdfe342">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>

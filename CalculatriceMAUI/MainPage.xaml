@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculatriceMAUI.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F6F6F6">
+
+    <Grid x:Name="Racine" RowDefinitions="2*,5*">
+
+        <Border Grid.Row="0" BackgroundColor="#3E5B4B" Stroke="Transparent"
+                StrokeShape="RoundRectangle 0,0,28,28" Padding="18,10,18,12">
+
+            <Grid RowDefinitions="Auto,*">
+
+                <HorizontalStackLayout Grid.Row="0" Spacing="12" HorizontalOptions="End">
+                    <Label Text="SCIENTIFIC CALCULATOR" TextColor="#C9D6CE"
+                           FontSize="12" VerticalOptions="Center" />
+                    <Button x:Name="BtnAngle" Text="DEG" Clicked="OnModeAngle"
+                            BackgroundColor="#2E4438" TextColor="White" FontSize="12"
+                            CornerRadius="12" HeightRequest="28" Padding="10,0"
+                            MinimumHeightRequest="0" MinimumWidthRequest="0" />
+                </HorizontalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" VerticalOptions="End" Spacing="0">
+                    <ScrollView x:Name="ScrollOperation" Orientation="Horizontal"
+                                HorizontalScrollBarVisibility="Never">
+                        <Label x:Name="LblOperation" Text="" FontSize="20"
+                               TextColor="#C9D6CE" HorizontalTextAlignment="End" />
+                    </ScrollView>
+
+                    <ScrollView x:Name="ScrollResultat" Orientation="Horizontal"
+                                HorizontalScrollBarVisibility="Never">
+                        <Label x:Name="LblResultat" Text="0" FontSize="52"
+                               TextColor="White" HorizontalTextAlignment="End" />
+                    </ScrollView>
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+        <Grid x:Name="Clavier" Grid.Row="1" RowDefinitions="3*,5*" Padding="8,6">
+
+            <Grid x:Name="PanneauSci" Grid.Row="0"
+                  ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="BackgroundColor" Value="#E9EFEB" />
+                        <Setter Property="TextColor" Value="#3E5B4B" />
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="CornerRadius" Value="24" />
+                        <Setter Property="Margin" Value="4" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="MinimumHeightRequest" Value="0" />
+                        <Setter Property="MinimumWidthRequest" Value="0" />
+                    </Style>
+                </Grid.Resources>
+
+                <Button Grid.Row="0" Grid.Column="0" Text="sin" Clicked="OnTouche" />
+                <Button Grid.Row="0" Grid.Column="1" Text="cos" Clicked="OnTouche" />
+                <Button Grid.Row="0" Grid.Column="2" Text="tan" Clicked="OnTouche" />
+                <Button Grid.Row="0" Grid.Column="3" Text="ln"  Clicked="OnTouche" />
+                <Button Grid.Row="0" Grid.Column="4" Text="log" Clicked="OnTouche" />
+
+                <Button Grid.Row="1" Grid.Column="0" Text="√"   Clicked="OnTouche" />
+                <Button Grid.Row="1" Grid.Column="1" Text="x²"  Clicked="OnTouche" />
+                <Button Grid.Row="1" Grid.Column="2" Text="xʸ"  Clicked="OnTouche" />
+                <Button Grid.Row="1" Grid.Column="3" Text="1/x" Clicked="OnTouche" />
+                <Button Grid.Row="1" Grid.Column="4" Text="n!"  Clicked="OnTouche" />
+
+                <Button Grid.Row="2" Grid.Column="0" Text="("   Clicked="OnTouche" />
+                <Button Grid.Row="2" Grid.Column="1" Text=")"   Clicked="OnTouche" />
+                <Button Grid.Row="2" Grid.Column="2" Text="π"   Clicked="OnTouche" />
+                <Button Grid.Row="2" Grid.Column="3" Text="e"   Clicked="OnTouche" />
+                <Button Grid.Row="2" Grid.Column="4" Text="10ˣ" Clicked="OnTouche" />
+            </Grid>
+
+            <Grid x:Name="PanneauNum" Grid.Row="1"
+                  ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="BackgroundColor" Value="White" />
+                        <Setter Property="TextColor" Value="#222222" />
+                        <Setter Property="FontSize" Value="24" />
+                        <Setter Property="CornerRadius" Value="30" />
+                        <Setter Property="Margin" Value="4" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="MinimumHeightRequest" Value="0" />
+                        <Setter Property="MinimumWidthRequest" Value="0" />
+                    </Style>
+                </Grid.Resources>
+
+                <!-- Ligne 1 : AC, DEL, = (large) -->
+                <Button Grid.Row="0" Grid.Column="0" Text="AC" TextColor="#F9A44A" Clicked="OnTouche" />
+                <Button Grid.Row="0" Grid.Column="1" Text="DEL" TextColor="#F9A44A" Clicked="OnTouche" />
+                <Button Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="=" BackgroundColor="#3E5B4B" TextColor="White" Clicked="OnTouche" />
+
+                <!-- Ligne 2 : 7, 8, 9, × -->
+                <Button Grid.Row="1" Grid.Column="0" Text="7" Clicked="OnTouche" />
+                <Button Grid.Row="1" Grid.Column="1" Text="8" Clicked="OnTouche" />
+                <Button Grid.Row="1" Grid.Column="2" Text="9" Clicked="OnTouche" />
+                <Button Grid.Row="1" Grid.Column="3" Text="×" BackgroundColor="#F9A44A" TextColor="White" Clicked="OnTouche" />
+
+                <!-- Ligne 3 : 4, 5, 6, - -->
+                <Button Grid.Row="2" Grid.Column="0" Text="4" Clicked="OnTouche" />
+                <Button Grid.Row="2" Grid.Column="1" Text="5" Clicked="OnTouche" />
+                <Button Grid.Row="2" Grid.Column="2" Text="6" Clicked="OnTouche" />
+                <Button Grid.Row="2" Grid.Column="3" Text="-" BackgroundColor="#F9A44A" TextColor="White" Clicked="OnTouche" />
+
+                <!-- Ligne 4 : 1, 2, 3, + -->
+                <Button Grid.Row="3" Grid.Column="0" Text="1" Clicked="OnTouche" />
+                <Button Grid.Row="3" Grid.Column="1" Text="2" Clicked="OnTouche" />
+                <Button Grid.Row="3" Grid.Column="2" Text="3" Clicked="OnTouche" />
+                <Button Grid.Row="3" Grid.Column="3" Text="+" BackgroundColor="#F9A44A" TextColor="White" Clicked="OnTouche" />
+
+                <!-- Ligne 5 : 0 (large), ,, ÷ -->
+                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="0" Clicked="OnTouche" />
+                <Button Grid.Row="4" Grid.Column="2" Text="," Clicked="OnTouche" />
+                <Button Grid.Row="4" Grid.Column="3" Text="÷" BackgroundColor="#F9A44A" TextColor="White" Clicked="OnTouche" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
